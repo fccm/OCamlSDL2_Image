@@ -15,6 +15,7 @@
 #include <caml/fail.h>
 
 #include <SDL_image.h>
+#include "sdlrwops_stub.h"
 
 static const IMG_InitFlags
 caml_sdl2img_initflags_table[] = {
@@ -58,8 +59,10 @@ caml_IMG_Quit(value unit)
     return Val_unit;
 }
 
-#define SDL_RWops_val(v)  ((SDL_RWops *)(v))
+/* Functions to detect a file type, given a seekable source */
 
+CAMLprim value caml_IMG_isICO(value img) { return Val_bool(IMG_isICO(SDL_RWops_val(img))); }
+CAMLprim value caml_IMG_isCUR(value img) { return Val_bool(IMG_isCUR(SDL_RWops_val(img))); }
 CAMLprim value caml_IMG_isBMP(value img) { return Val_bool(IMG_isBMP(SDL_RWops_val(img))); }
 CAMLprim value caml_IMG_isGIF(value img) { return Val_bool(IMG_isGIF(SDL_RWops_val(img))); }
 CAMLprim value caml_IMG_isJPG(value img) { return Val_bool(IMG_isJPG(SDL_RWops_val(img))); }
@@ -68,5 +71,9 @@ CAMLprim value caml_IMG_isPCX(value img) { return Val_bool(IMG_isPCX(SDL_RWops_v
 CAMLprim value caml_IMG_isPNG(value img) { return Val_bool(IMG_isPNG(SDL_RWops_val(img))); }
 CAMLprim value caml_IMG_isPNM(value img) { return Val_bool(IMG_isPNM(SDL_RWops_val(img))); }
 CAMLprim value caml_IMG_isTIF(value img) { return Val_bool(IMG_isTIF(SDL_RWops_val(img))); }
+CAMLprim value caml_IMG_isXCF(value img) { return Val_bool(IMG_isXCF(SDL_RWops_val(img))); }
+CAMLprim value caml_IMG_isXPM(value img) { return Val_bool(IMG_isXPM(SDL_RWops_val(img))); }
+CAMLprim value caml_IMG_isXV (value img) { return Val_bool(IMG_isXV (SDL_RWops_val(img))); }
+CAMLprim value caml_IMG_isWEBP(value img) { return Val_bool(IMG_isWEBP(SDL_RWops_val(img))); }
 
 /* vim: set ts=4 sw=4 et: */

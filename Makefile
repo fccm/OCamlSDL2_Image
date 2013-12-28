@@ -21,7 +21,7 @@ DIRSEP = $(shell $(OCAML) dir_sep.ml)
 
 PKG_CONFIG = pkg-config
 CFLAGS = $(shell $(PKG_CONFIG) --cflags SDL2_image)
-CFLAGS += -I/home/blue_prawn/home/gits/blue-prawn/OCamlSDL2/src
+CFLAGS += -I$(OCAMLDIR)/sdl2/include/
 LIBS_ = $(shell $(PKG_CONFIG) --libs SDL2_image)
 LIBS = $(shell $(OCAML) prm.ml $(LIBS_))
 
@@ -34,26 +34,26 @@ lib: sdl2_img.cma
 opt: sdl2_img.cmxa
 
 %.cmi: %.mli
-	$(OCAMLC) $<
-
-%.cmo: %.ml
 	$(OCAMLC) -c $<
 
+%.cmo: %.ml
+	$(OCAMLC) -c -I +sdl2 $<
+
 %.cmx: %.ml
-	$(OCAMLOPT) -c $<
+	$(OCAMLOPT) -c -I +sdl2 $<
 
 sdlimage_stub.o: sdlimage_stub.c
 	$(OCAMLC) -ccopt "-static $(CFLAGS) -g -O " $<
 
 
-sdl2_img.cma: sdlimage.cmo libsdlstub.a
-	$(OCAMLMKLIB) -o sdl2_img -oc sdl2_stubs sdlimage.cmo $(LIBS)
+sdl2_img.cma: sdlimage.cmo libsdl2img_stubs.a
+	$(OCAMLMKLIB) -o sdl2_img -oc sdl2img_stubs sdlimage.cmo $(LIBS)
 
-sdl2_img.cmxa: sdlimage.cmx libsdlstub.a
-	$(OCAMLMKLIB) -o sdl2_img -oc sdl2_stubs sdlimage.cmx $(LIBS)
+sdl2_img.cmxa: sdlimage.cmx libsdl2img_stubs.a
+	$(OCAMLMKLIB) -o sdl2_img -oc sdl2img_stubs sdlimage.cmx $(LIBS)
 
-libsdlstub.a: sdlimage_stub.o
-	$(OCAMLMKLIB) -o sdl2_img -oc sdl2_stubs sdlimage_stub.o $(LIBS)
+libsdl2img_stubs.a: sdlimage_stub.o
+	$(OCAMLMKLIB) -o sdl2_img -oc sdl2img_stubs sdlimage_stub.o $(LIBS)
 
 .PHONY: edit
 edit:

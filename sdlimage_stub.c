@@ -76,4 +76,36 @@ CAMLprim value caml_IMG_isXPM(value img) { return Val_bool(IMG_isXPM(SDL_RWops_v
 CAMLprim value caml_IMG_isXV (value img) { return Val_bool(IMG_isXV (SDL_RWops_val(img))); }
 CAMLprim value caml_IMG_isWEBP(value img) { return Val_bool(IMG_isWEBP(SDL_RWops_val(img))); }
 
+CAMLprim value
+caml_SDL_IMG_GetCompiledVersion(value unit)
+{
+    CAMLparam0();
+    CAMLlocal1(ret);
+
+    SDL_version img_version;
+    SDL_IMAGE_VERSION(&img_version);
+
+    ret = caml_alloc(3, 0);
+    Store_field(ret, 0, Val_int(img_version.major));
+    Store_field(ret, 1, Val_int(img_version.minor));
+    Store_field(ret, 2, Val_int(img_version.patch));
+    CAMLreturn(ret);
+}
+
+CAMLprim value
+caml_SDL_IMG_GetLinkedVersion(value unit)
+{
+    CAMLparam0();
+    CAMLlocal1(ret);
+
+    const SDL_version *img_version;
+    img_version = IMG_Linked_Version();
+
+    ret = caml_alloc(3, 0);
+    Store_field(ret, 0, Val_int(img_version->major));
+    Store_field(ret, 1, Val_int(img_version->minor));
+    Store_field(ret, 2, Val_int(img_version->patch));
+    CAMLreturn(ret);
+}
+
 /* vim: set ts=4 sw=4 et: */

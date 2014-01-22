@@ -37,3 +37,9 @@ external is_xpm : Sdlrwops.t -> bool = "caml_IMG_isXPM"
 external is_xv : Sdlrwops.t -> bool = "caml_IMG_isXV"
 external is_webp : Sdlrwops.t -> bool = "caml_IMG_isWEBP"
 
+external get_linked_version : unit -> int * int * int
+  = "caml_SDL_IMG_GetLinkedVersion"
+
+external get_compiled_version : unit -> int * int * int
+  = "caml_SDL_IMG_GetCompiledVersion"
+

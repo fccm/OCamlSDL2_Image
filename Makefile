@@ -18,10 +18,12 @@ OCAMLMKLIB = ocamlmklib
 CC = gcc
 OCAMLDIR = $(shell $(OCAMLC) -where)
 DIRSEP = $(shell $(OCAML) dir_sep.ml)
+OCSDLINCDIR = $(OCAMLDIR)/sdl2/include/
+SDLINCDIR = /usr/include/SDL2
 
 PKG_CONFIG = pkg-config
 CFLAGS = $(shell $(PKG_CONFIG) --cflags SDL2_image)
-CFLAGS += -I$(OCAMLDIR)/sdl2/include/
+CFLAGS += -I$(OCSDLINCDIR)
 LIBS_ = $(shell $(PKG_CONFIG) --libs SDL2_image)
 LIBS = $(shell $(OCAML) prm.ml $(LIBS_))
 
@@ -57,7 +59,9 @@ libsdl2img_stubs.a: sdlimage_stub.o
 
 .PHONY: edit
 edit:
-	$(EDITOR) sdlimage.ml sdlimage_stub.c
+	$(EDITOR) sdlimage.ml sdlimage_stub.c \
+	    $(SDLINCDIR)/SDL_image.h \
+	    $(OCSDLINCDIR)
 
 .PHONY: clean
 clean:

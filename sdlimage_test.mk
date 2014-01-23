@@ -11,6 +11,7 @@
 OCAML = ocaml
 OCAMLC = ocamlc
 OCAMLOPT = ocamlopt
+OCAMLRUN = ocamlrun
 
 OCAMLSDL2_DIR="$(shell pwd)/../OCamlSDL2/src"
 OCAMLSDL2_IMG_DIR="."
@@ -19,6 +20,8 @@ OCAMLSDL2_IMG_DIR="."
 all: opt
 byte: sdlimage_test.byte
 opt: sdlimage_test.opt
+
+# Compile the test
 
 sdlimage_test.opt: sdlimage_test.ml
 	$(OCAMLOPT) \
@@ -31,6 +34,23 @@ sdlimage_test.byte: sdlimage_test.ml
 	  -I $(OCAMLSDL2_DIR) sdl2.cma \
 	  -I $(OCAMLSDL2_IMG_DIR) sdl2_img.cma \
 	  $< -o $@
+
+
+# Running the test
+
+TESTIMG = imgs/caml_icon.png
+
+.PHONY: run
+run: sdlimage_test.byte
+	$(OCAMLRUN) \
+	  -I $(OCAMLSDL2_DIR) \
+	  -I $(OCAMLSDL2_IMG_DIR) \
+	  $< $(TESTIMG)
+
+.PHONY: runopt
+runopt: sdlimage_test.opt
+	./$< $(TESTIMG)
+
 
 .PHONY: edit
 edit:

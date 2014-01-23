@@ -74,7 +74,7 @@ doc: sdlimage.cmo
 	$(OCAMLDOC) \
 	  $(OCAMLDOC_PRM) \
 	  $(OCAMLDOC_INC) \
-	  sdlimage.ml \
+	  sdlimage.mli \
 	  -d $(DOC_DIR)
 
 .PHONY: cleandoc

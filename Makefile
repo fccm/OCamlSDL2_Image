@@ -18,6 +18,7 @@ OCAMLMKLIB = ocamlmklib
 CC = gcc
 OCAMLDIR = $(shell $(OCAMLC) -where)
 DIRSEP = $(shell $(OCAML) dir_sep.ml)
+OCSDLINC = -I +sdl2
 OCSDLDIR = $(OCAMLDIR)/sdl2
 OCSDLINCDIR = $(OCSDLDIR)/include/
 SDLINCDIR = /usr/include/SDL2
@@ -40,13 +41,13 @@ lib: sdl2_img.cma
 opt: sdl2_img.cmxa
 
 %.cmi: %.mli
-	$(OCAMLC) -c $<
+	$(OCAMLC) -c $(OCSDLINC) $<
 
 %.cmo: %.ml
-	$(OCAMLC) -c -I +sdl2 $<
+	$(OCAMLC) -c $(OCSDLINC) $<
 
 %.cmx: %.ml
-	$(OCAMLOPT) -c -I +sdl2 $<
+	$(OCAMLOPT) -c $(OCSDLINC) $<
 
 sdlimage_stub.o: sdlimage_stub.c
 	$(OCAMLC) -ccopt "-static $(CFLAGS) -g -O " $<
@@ -65,7 +66,7 @@ libsdl2img_stubs.a: sdlimage_stub.o
 # API documentation generation
 
 OCAMLDOC_PRM = -colorize-code -html
-OCAMLDOC_INC = -I $(OCSDLDIR)
+OCAMLDOC_INC = $(OCSDLINC)
 
 .PHONY: doc
 doc: sdlimage.cmo
@@ -90,5 +91,12 @@ edit:
 
 .PHONY: clean
 clean:
-	$(RM) *.[oas] *.cm[ioxta] *.cmx[as] *.so *.dll *.opt *.exe
+	$(RM) *.[oas] *.cm[ioxta] *.cmx[as] *.so *.dll *.byte *.opt *.exe
+
+
+# Dependencies
+
+sdlimage.cmo: sdlimage.cmi
+sdlimage.cmx: sdlimage.cmi
+sdlimage.cmi:
 

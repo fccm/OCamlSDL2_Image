@@ -18,8 +18,12 @@ OCAMLMKLIB = ocamlmklib
 CC = gcc
 OCAMLDIR = $(shell $(OCAMLC) -where)
 DIRSEP = $(shell $(OCAML) dir_sep.ml)
-OCSDLINCDIR = $(OCAMLDIR)/sdl2/include/
+OCSDLDIR = $(OCAMLDIR)/sdl2
+OCSDLINCDIR = $(OCSDLDIR)/include/
 SDLINCDIR = /usr/include/SDL2
+DOC_DIR = doc
+MKDIR = mkdir -p
+RMDIR = rmdir
 
 PKG_CONFIG = pkg-config
 CFLAGS = $(shell $(PKG_CONFIG) --cflags SDL2_image)
@@ -56,6 +60,27 @@ sdl2_img.cmxa: sdlimage.cmx libsdl2img_stubs.a
 
 libsdl2img_stubs.a: sdlimage_stub.o
 	$(OCAMLMKLIB) -o sdl2_img -oc sdl2img_stubs sdlimage_stub.o $(LIBS)
+
+
+# API documentation generation
+
+OCAMLDOC_PRM = -colorize-code -html
+OCAMLDOC_INC = -I $(OCSDLDIR)
+
+.PHONY: doc
+doc: sdlimage.cmo
+	$(MKDIR) $(DOC_DIR)
+	$(OCAMLDOC) \
+	  $(OCAMLDOC_PRM) \
+	  $(OCAMLDOC_INC) \
+	  sdlimage.ml \
+	  -d $(DOC_DIR)
+
+.PHONY: cleandoc
+cleandoc:
+	$(RM) $(DOC_DIR)/*
+	$(RMDIR) $(DOC_DIR)
+
 
 .PHONY: edit
 edit:

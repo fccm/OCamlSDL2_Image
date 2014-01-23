@@ -16,6 +16,8 @@
 
 #include <SDL_image.h>
 #include "sdlrwops_stub.h"
+#include "sdltexture_stub.h"
+#include "sdlsurface_stub.h"
 
 static const IMG_InitFlags
 caml_sdl2img_initflags_table[] = {
@@ -106,6 +108,16 @@ caml_SDL_IMG_GetLinkedVersion(value unit)
     Store_field(ret, 1, Val_int(img_version->minor));
     Store_field(ret, 2, Val_int(img_version->patch));
     CAMLreturn(ret);
+}
+
+CAMLprim value
+caml_SDL_IMG_LoadPNG_RW(value img)
+{
+    SDL_Surface *surf =
+        IMG_LoadPNG_RW(
+            SDL_RWops_val(img));
+
+    return Val_SDL_Surface(surf);
 }
 
 /* vim: set ts=4 sw=4 et: */

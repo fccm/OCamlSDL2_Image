@@ -43,3 +43,6 @@ external get_linked_version : unit -> int * int * int
 external get_compiled_version : unit -> int * int * int
   = "caml_SDL_IMG_GetCompiledVersion"
 
+external load_png_rw : Sdlrwops.t -> Sdlsurface.t
+  = "caml_SDL_IMG_LoadPNG_RW"
+

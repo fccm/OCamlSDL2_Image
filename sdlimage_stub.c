@@ -117,6 +117,8 @@ caml_SDL_IMG_LoadPNG_RW(value img)
         IMG_LoadPNG_RW(
             SDL_RWops_val(img));
 
+    if (!surf) caml_failwith("Sdlimage.load_png_rw");
+
     return Val_SDL_Surface(surf);
 }
 

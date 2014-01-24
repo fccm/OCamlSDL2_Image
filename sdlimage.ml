@@ -46,3 +46,18 @@ external get_compiled_version : unit -> int * int * int
 external load_png_rw : Sdlrwops.t -> Sdlsurface.t
   = "caml_SDL_IMG_LoadPNG_RW"
 
+external load_ico_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadICO_RW"
+external load_cur_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadCUR_RW"
+external load_bmp_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadBMP_RW"
+external load_gif_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadGIF_RW"
+external load_jpg_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadJPG_RW"
+external load_lbm_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadLBM_RW"
+external load_pcx_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadPCX_RW"
+external load_pnm_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadPNM_RW"
+external load_tga_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadTGA_RW"
+external load_tif_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadTIF_RW"
+external load_xcf_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadXCF_RW"
+external load_xpm_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadXPM_RW"
+external load_xv_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadXV_RW"
+external load_webp_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadWEBP_RW"
+

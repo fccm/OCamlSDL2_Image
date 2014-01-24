@@ -122,4 +122,29 @@ caml_SDL_IMG_LoadPNG_RW(value img)
     return Val_SDL_Surface(surf);
 }
 
+#define caml_SDL_IMG_LoadT_RW(T, k) \
+  CAMLprim value \
+  caml_SDL_IMG_Load##T##_RW(value img) { \
+      SDL_Surface *surf = \
+        IMG_Load##T##_RW( \
+          SDL_RWops_val(img)); \
+      if (!surf) caml_failwith("Sdlimage.load_" #k "_rw"); \
+      return Val_SDL_Surface(surf); \
+  }
+
+caml_SDL_IMG_LoadT_RW(ICO, ico)
+caml_SDL_IMG_LoadT_RW(CUR, cur)
+caml_SDL_IMG_LoadT_RW(BMP, bmp)
+caml_SDL_IMG_LoadT_RW(GIF, gif)
+caml_SDL_IMG_LoadT_RW(JPG, jpg)
+caml_SDL_IMG_LoadT_RW(LBM, lbm)
+caml_SDL_IMG_LoadT_RW(PCX, pcx)
+caml_SDL_IMG_LoadT_RW(PNM, pnm)
+caml_SDL_IMG_LoadT_RW(TGA, tga)
+caml_SDL_IMG_LoadT_RW(TIF, tif)
+caml_SDL_IMG_LoadT_RW(XCF, xcf)
+caml_SDL_IMG_LoadT_RW(XPM, xpm)
+caml_SDL_IMG_LoadT_RW(XV, xv)
+caml_SDL_IMG_LoadT_RW(WEBP, webp)
+
 /* vim: set ts=4 sw=4 et: */

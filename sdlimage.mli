@@ -30,6 +30,9 @@ external get_linked_version : unit -> int * int * int
 external get_compiled_version : unit -> int * int * int
   = "caml_SDL_IMG_GetCompiledVersion"
 
+
+(** {4 File Format} *)
+
 external is_ico : Sdlrwops.t -> bool = "caml_IMG_isICO"
 external is_cur : Sdlrwops.t -> bool = "caml_IMG_isCUR"
 external is_bmp : Sdlrwops.t -> bool = "caml_IMG_isBMP"
@@ -44,6 +47,9 @@ external is_xcf : Sdlrwops.t -> bool = "caml_IMG_isXCF"
 external is_xpm : Sdlrwops.t -> bool = "caml_IMG_isXPM"
 external is_xv : Sdlrwops.t -> bool = "caml_IMG_isXV"
 external is_webp : Sdlrwops.t -> bool = "caml_IMG_isWEBP"
+
+
+(** {4 Loading} *)
 
 external load_png_rw : Sdlrwops.t -> Sdlsurface.t
   = "caml_SDL_IMG_LoadPNG_RW"

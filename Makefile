@@ -90,7 +90,8 @@ edit:
 	  sdlimage.ml \
 	  sdlimage_stub.c \
 	    $(SDLINCDIR)/SDL_image.h \
-	    $(OCSDLINCDIR)
+	    $(OCSDLINCDIR) \
+	    $(SDLINCDIR)
 
 .PHONY: clean
 clean:

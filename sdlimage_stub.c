@@ -147,4 +147,17 @@ caml_SDL_IMG_LoadT_RW(XPM, xpm)
 caml_SDL_IMG_LoadT_RW(XV, xv)
 caml_SDL_IMG_LoadT_RW(WEBP, webp)
 
+CAMLprim value
+caml_SDL_IMG_SavePNG(value surf, value filename)
+{
+    int r =
+        IMG_SavePNG(
+            SDL_Surface_val(surf),
+            String_val(filename));
+
+    if (r) caml_failwith("Sdlimage.save_png");
+
+    return Val_unit;
+}
+
 /* vim: set ts=4 sw=4 et: */

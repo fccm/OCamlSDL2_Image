@@ -61,3 +61,6 @@ external load_xpm_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadXPM_RW"
 external load_xv_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadXV_RW"
 external load_webp_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadWEBP_RW"
 
+external save_png : Sdlsurface.t -> filename:string -> unit
+  = "caml_SDL_IMG_SavePNG"
+

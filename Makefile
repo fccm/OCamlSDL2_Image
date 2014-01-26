@@ -85,7 +85,10 @@ cleandoc:
 
 .PHONY: edit
 edit:
-	$(EDITOR) sdlimage.ml sdlimage_stub.c \
+	$(EDITOR) \
+	  sdlimage.mli \
+	  sdlimage.ml \
+	  sdlimage_stub.c \
 	    $(SDLINCDIR)/SDL_image.h \
 	    $(OCSDLINCDIR)
 

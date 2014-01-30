@@ -1,0 +1,9 @@
+name = "sdl2_img"
+description = "bindings to the SDL2_image library"
+version = "@VERSION@"
+requires = "sdl2"
+
+archive(byte) = "sdl2_img.cma"
+archive(native) = "sdl2_img.cmxa"
+archive(byte,plugin) = "sdl2_img.cma"
+archive(native,plugin) = "sdl2_img.cmxs"

@@ -97,6 +97,16 @@ edit:
 clean:
 	$(RM) *.[oas] *.cm[ioxta] *.cmx[as] *.so *.dll *.byte *.opt *.exe
 
+# Installation
+
+.PHONY: findinstall finduninstall
+findinstall: META sdl2_img.cma
+	$(OCAMLFIND) install $(BINDINGS_DIR) META \
+	  *.cm[aix] *.cmx[as] sdl2*.a *sdl2*_stubs.*
+
+finduninstall:
+	$(OCAMLFIND) remove $(BINDINGS_DIR)
+
 
 # Dependencies
 

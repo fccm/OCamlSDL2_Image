@@ -83,6 +83,8 @@ cleandoc:
 	$(RMDIR) $(DOC_DIR)
 
 
+# Edition
+
 .PHONY: edit
 edit:
 	$(EDITOR) \
@@ -93,9 +95,13 @@ edit:
 	    $(OCSDLINCDIR) \
 	    $(SDLINCDIR)
 
+
+# Cleaning
+
 .PHONY: clean
 clean:
 	$(RM) *.[oas] *.cm[ioxta] *.cmx[as] *.so *.dll *.byte *.opt *.exe
+
 
 # Installation
 

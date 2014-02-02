@@ -16,6 +16,9 @@ OCAMLRUN = ocamlrun
 OCAMLSDL2_DIR="$(shell pwd)/../../OCamlSDL2/src"
 OCAMLSDL2_IMG_DIR="$(shell pwd)/../src"
 
+#OCAMLSDL2_DIR="+sdl2"
+#OCAMLSDL2_IMG_DIR="+sdl2-img"
+
 EDITOR = vim
 
 FILE =

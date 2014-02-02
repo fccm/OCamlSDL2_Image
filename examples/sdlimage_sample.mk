@@ -13,8 +13,8 @@ OCAMLC = ocamlc
 OCAMLOPT = ocamlopt
 OCAMLRUN = ocamlrun
 
-OCAMLSDL2_DIR="$(shell pwd)/../OCamlSDL2/src"
-OCAMLSDL2_IMG_DIR="."
+OCAMLSDL2_DIR="$(shell pwd)/../../OCamlSDL2/src"
+OCAMLSDL2_IMG_DIR="$(shell pwd)/../src"
 
 EDITOR = vim
 
@@ -43,7 +43,7 @@ $(SAMPLE).byte: $(FILE)
 
 # Running the test
 
-TESTIMG = imgs/caml_icon.png
+TESTIMG = ../imgs/caml_icon.png
 
 .PHONY: run
 run: $(SAMPLE).byte

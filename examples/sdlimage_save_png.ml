@@ -9,7 +9,7 @@ let () =
   Img.init [`PNG];
   let surf = Surf.create_rgb ~width ~height ~depth:8 in
   Random.self_init ();
-  let img = Surf.load_bmp "imgs/caml_icon.bmp" in
+  let img = Surf.load_bmp "../imgs/caml_icon.bmp" in
   let w, h = Surf.get_dims img in
   let rect = Rect.make4 0 0 w h in
   let rec loop rect i =

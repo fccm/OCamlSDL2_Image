@@ -22,7 +22,7 @@ let () =
     exit 0
   in
 
-  let filename = "imgs/caml_icon.png" in
+  let filename = "../imgs/caml_icon.png" in
   let rw = RWops.from_file ~filename ~mode:"rb" in
   let surf = Image.load_png_rw rw in
 

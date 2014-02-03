@@ -1,0 +1,5 @@
+Florent Monnier <monnier.florent on gmail>
+  Main author and current maintainer
+
+Piotr Mardziel <@piotrm0>
+  Added ocamlfind installation and instructions

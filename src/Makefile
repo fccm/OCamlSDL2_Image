@@ -8,9 +8,8 @@
 # Permission is granted to anyone to use this software for any purpose,
 # including commercial applications, and to alter it and redistribute it freely.
 
-USEFIND = 1
-
-OCAMLFIND = ocamlfind
+OCAMLFIND := ocamlfind
+USEFIND := $(shell which $(OCAMLFIND) 2>/dev/null)
 
 ifdef USEFIND
 OCAMLC = $(OCAMLFIND) ocamlc
@@ -36,13 +35,19 @@ DOC_DIR = doc
 MKDIR = mkdir -p
 RMDIR = rmdir
 
+BINDINGS_DIR := sdl2_img
+PREFIX := 
+DESTDIR := $(PREFIX)$(DIRSEP)$(OCAMLDIR)$(DIRSEP)$(BINDINGS_DIR)
+UNINSTALL_DIR := rm -Rf
+INSTALL_DIR := mkdir -p
+INSTALL_FILES := cp -f
+
 PKG_CONFIG = pkg-config
 CFLAGS = $(shell $(PKG_CONFIG) --cflags SDL2_image)
 CFLAGS += -I$(OCSDLINCDIR)
 LIBS_ = $(shell $(PKG_CONFIG) --libs SDL2_image)
 LIBS = $(shell $(OCAML) prm.ml $(LIBS_))
 
-BINDINGS_DIR = sdl2_img
 EDITOR = vim
 
 .PHONY: all lib opt
@@ -109,20 +114,31 @@ clean:
 
 # Installation
 
-.PHONY: findinstall finduninstall findreinstall
-findinstall: META sdl2_img.cma
+.PHONY: install uninstall reinstall
+
+install: META sdl2_img.cma
+
+ifdef USEFIND
+install:
 	$(OCAMLFIND) install $(BINDINGS_DIR) META \
 	  *.cm[aix] *.cmx[as] sdl2*.a *sdl2*_stubs.*
-
-finduninstall:
+uninstall:
 	$(OCAMLFIND) remove $(BINDINGS_DIR)
+else
+install:
+	$(INSTALL_DIR) $(DESTDIR)
+	$(INSTALL_FILES) \
+	  *.cm[aix] *.cmx[as] sdl2*.a *sdl2*_stubs.* \
+	  $(DESTDIR)
+uninstall:
+	$(UNINSTALL_DIR) $(DESTDIR)
+endif
 
-findreinstall:
+reinstall:
 	$(MAKE) clean
 	$(MAKE) all
-	$(MAKE) finduninstall
-	$(MAKE) findinstall
-
+	$(MAKE) uninstall
+	$(MAKE) install
 
 # Dependencies
 

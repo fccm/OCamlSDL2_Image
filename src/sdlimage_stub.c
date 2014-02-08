@@ -44,7 +44,7 @@ IMG_InitFlags_val(value flag_list)
 }
 
 CAMLprim value
-caml_IMG_Init(value flags)
+caml_SDL_IMG_Init(value flags)
 {
     IMG_InitFlags c_flags = IMG_InitFlags_val(flags);
     int si = IMG_Init(c_flags);
@@ -55,7 +55,7 @@ caml_IMG_Init(value flags)
 }
 
 CAMLprim value
-caml_IMG_Quit(value unit)
+caml_SDL_IMG_Quit(value unit)
 {
     IMG_Quit();
     return Val_unit;
@@ -63,20 +63,20 @@ caml_IMG_Quit(value unit)
 
 /* Functions to detect a file type, given a seekable source */
 
-CAMLprim value caml_IMG_isICO(value img) { return Val_bool(IMG_isICO(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isCUR(value img) { return Val_bool(IMG_isCUR(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isBMP(value img) { return Val_bool(IMG_isBMP(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isGIF(value img) { return Val_bool(IMG_isGIF(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isJPG(value img) { return Val_bool(IMG_isJPG(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isLBM(value img) { return Val_bool(IMG_isLBM(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isPCX(value img) { return Val_bool(IMG_isPCX(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isPNG(value img) { return Val_bool(IMG_isPNG(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isPNM(value img) { return Val_bool(IMG_isPNM(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isTIF(value img) { return Val_bool(IMG_isTIF(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isXCF(value img) { return Val_bool(IMG_isXCF(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isXPM(value img) { return Val_bool(IMG_isXPM(SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isXV (value img) { return Val_bool(IMG_isXV (SDL_RWops_val(img))); }
-CAMLprim value caml_IMG_isWEBP(value img) { return Val_bool(IMG_isWEBP(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isICO(value img) { return Val_bool(IMG_isICO(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isCUR(value img) { return Val_bool(IMG_isCUR(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isBMP(value img) { return Val_bool(IMG_isBMP(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isGIF(value img) { return Val_bool(IMG_isGIF(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isJPG(value img) { return Val_bool(IMG_isJPG(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isLBM(value img) { return Val_bool(IMG_isLBM(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isPCX(value img) { return Val_bool(IMG_isPCX(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isPNG(value img) { return Val_bool(IMG_isPNG(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isPNM(value img) { return Val_bool(IMG_isPNM(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isTIF(value img) { return Val_bool(IMG_isTIF(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isXCF(value img) { return Val_bool(IMG_isXCF(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isXPM(value img) { return Val_bool(IMG_isXPM(SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isXV (value img) { return Val_bool(IMG_isXV (SDL_RWops_val(img))); }
+CAMLprim value caml_SDL_IMG_isWEBP(value img) { return Val_bool(IMG_isWEBP(SDL_RWops_val(img))); }
 
 CAMLprim value
 caml_SDL_IMG_GetCompiledVersion(value unit)

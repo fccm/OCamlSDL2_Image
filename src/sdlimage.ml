@@ -17,10 +17,10 @@ type init_flags =
   | Init_WEBP
 
 external init : init_flags list -> unit
-  = "caml_IMG_Init"
+  = "caml_SDL_IMG_Init"
 
 external quit : unit -> unit
-  = "caml_IMG_Quit"
+  = "caml_SDL_IMG_Quit"
 
 external get_linked_version : unit -> int * int * int
   = "caml_SDL_IMG_GetLinkedVersion"
@@ -28,20 +28,20 @@ external get_linked_version : unit -> int * int * int
 external get_compiled_version : unit -> int * int * int
   = "caml_SDL_IMG_GetCompiledVersion"
 
-external is_ico : Sdlrwops.t -> bool = "caml_IMG_isICO"
-external is_cur : Sdlrwops.t -> bool = "caml_IMG_isCUR"
-external is_bmp : Sdlrwops.t -> bool = "caml_IMG_isBMP"
-external is_gif : Sdlrwops.t -> bool = "caml_IMG_isGIF"
-external is_jpg : Sdlrwops.t -> bool = "caml_IMG_isJPG"
-external is_lbm : Sdlrwops.t -> bool = "caml_IMG_isLBM"
-external is_pcx : Sdlrwops.t -> bool = "caml_IMG_isPCX"
-external is_png : Sdlrwops.t -> bool = "caml_IMG_isPNG"
-external is_pnm : Sdlrwops.t -> bool = "caml_IMG_isPNM"
-external is_tif : Sdlrwops.t -> bool = "caml_IMG_isTIF"
-external is_xcf : Sdlrwops.t -> bool = "caml_IMG_isXCF"
-external is_xpm : Sdlrwops.t -> bool = "caml_IMG_isXPM"
-external is_xv : Sdlrwops.t -> bool = "caml_IMG_isXV"
-external is_webp : Sdlrwops.t -> bool = "caml_IMG_isWEBP"
+external is_ico : Sdlrwops.t -> bool = "caml_SDL_IMG_isICO"
+external is_cur : Sdlrwops.t -> bool = "caml_SDL_IMG_isCUR"
+external is_bmp : Sdlrwops.t -> bool = "caml_SDL_IMG_isBMP"
+external is_gif : Sdlrwops.t -> bool = "caml_SDL_IMG_isGIF"
+external is_jpg : Sdlrwops.t -> bool = "caml_SDL_IMG_isJPG"
+external is_lbm : Sdlrwops.t -> bool = "caml_SDL_IMG_isLBM"
+external is_pcx : Sdlrwops.t -> bool = "caml_SDL_IMG_isPCX"
+external is_png : Sdlrwops.t -> bool = "caml_SDL_IMG_isPNG"
+external is_pnm : Sdlrwops.t -> bool = "caml_SDL_IMG_isPNM"
+external is_tif : Sdlrwops.t -> bool = "caml_SDL_IMG_isTIF"
+external is_xcf : Sdlrwops.t -> bool = "caml_SDL_IMG_isXCF"
+external is_xpm : Sdlrwops.t -> bool = "caml_SDL_IMG_isXPM"
+external is_xv : Sdlrwops.t -> bool = "caml_SDL_IMG_isXV"
+external is_webp : Sdlrwops.t -> bool = "caml_SDL_IMG_isWEBP"
 
 external load_png_rw : Sdlrwops.t -> Sdlsurface.t
   = "caml_SDL_IMG_LoadPNG_RW"

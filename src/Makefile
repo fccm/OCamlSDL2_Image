@@ -8,17 +8,26 @@
 # Permission is granted to anyone to use this software for any purpose,
 # including commercial applications, and to alter it and redistribute it freely.
 
-OCAML = ocaml
+OCAMLFIND := ocamlfind
+USEFIND := $(shell which $(OCAMLFIND) 2>/dev/null)
+
+ifdef USEFIND
+OCAMLC = $(OCAMLFIND) ocamlc
+OCAMLOPT = $(OCAMLFIND) ocamlopt
+OCSDLINC = -package sdl2
+else
 OCAMLC = ocamlc
 OCAMLOPT = ocamlopt
+OCSDLINC = -I +sdl2
+endif
+
+OCAMLMKLIB = ocamlmklib
 OCAMLDOC = ocamldoc
 OCAMLDEP = ocamldep
-OCAMLFIND = ocamlfind
-OCAMLMKLIB = ocamlmklib
+OCAML = ocaml
 CC = gcc
 OCAMLDIR = $(shell $(OCAMLC) -where)
 DIRSEP = $(shell $(OCAML) dir_sep.ml)
-OCSDLINC = -I +sdl2
 OCSDLDIR = $(OCAMLDIR)/sdl2
 OCSDLINCDIR = $(OCSDLDIR)/include/
 SDLINCDIR = /usr/include/SDL2
@@ -26,13 +35,19 @@ DOC_DIR = doc
 MKDIR = mkdir -p
 RMDIR = rmdir
 
+BINDINGS_DIR := sdl2_img
+PREFIX := 
+DESTDIR := $(PREFIX)$(DIRSEP)$(OCAMLDIR)$(DIRSEP)$(BINDINGS_DIR)
+UNINSTALL_DIR := rm -Rf
+INSTALL_DIR := mkdir -p
+INSTALL_FILES := cp -f
+
 PKG_CONFIG = pkg-config
 CFLAGS = $(shell $(PKG_CONFIG) --cflags SDL2_image)
 CFLAGS += -I$(OCSDLINCDIR)
 LIBS_ = $(shell $(PKG_CONFIG) --libs SDL2_image)
 LIBS = $(shell $(OCAML) prm.ml $(LIBS_))
 
-BINDINGS_DIR = sdl2_img
 EDITOR = vim
 
 .PHONY: all lib opt
@@ -83,8 +98,6 @@ cleandoc:
 	$(RMDIR) $(DOC_DIR)
 
 
-# Edition
-
 .PHONY: edit
 edit:
 	$(EDITOR) \
@@ -95,24 +108,37 @@ edit:
 	    $(OCSDLINCDIR) \
 	    $(SDLINCDIR)
 
-
-# Cleaning
-
 .PHONY: clean
 clean:
 	$(RM) *.[oas] *.cm[ioxta] *.cmx[as] *.so *.dll *.byte *.opt *.exe
 
-
 # Installation
 
-.PHONY: findinstall finduninstall
-findinstall: META sdl2_img.cma
+.PHONY: install uninstall reinstall
+
+install: META sdl2_img.cma
+
+ifdef USEFIND
+install:
 	$(OCAMLFIND) install $(BINDINGS_DIR) META \
 	  *.cm[aix] *.cmx[as] sdl2*.a *sdl2*_stubs.*
-
-finduninstall:
+uninstall:
 	$(OCAMLFIND) remove $(BINDINGS_DIR)
+else
+install:
+	$(INSTALL_DIR) $(DESTDIR)
+	$(INSTALL_FILES) \
+	  *.cm[aix] *.cmx[as] sdl2*.a *sdl2*_stubs.* \
+	  $(DESTDIR)
+uninstall:
+	$(UNINSTALL_DIR) $(DESTDIR)
+endif
 
+reinstall:
+	$(MAKE) clean
+	$(MAKE) all
+	$(MAKE) uninstall
+	$(MAKE) install
 
 # Dependencies
 

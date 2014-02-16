@@ -10,11 +10,12 @@
 *)
 (* Image loading library *)
 
-type init_flags =
-  | Init_JPG
-  | Init_PNG
-  | Init_TIF
-  | Init_WEBP
+type init_flags = [
+  | `JPG
+  | `PNG
+  | `TIF
+  | `WEBP
+  ]
 
 external init : init_flags list -> unit
   = "caml_SDL_IMG_Init"

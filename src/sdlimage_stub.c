@@ -19,16 +19,15 @@
 #include "sdltexture_stub.h"
 #include "sdlsurface_stub.h"
 
-static const IMG_InitFlags
-caml_sdl2img_initflags_table[] = {
-    IMG_INIT_JPG,
-    IMG_INIT_PNG,
-    IMG_INIT_TIF,
-    IMG_INIT_WEBP,
-};
-
-#define IMG_InitFlag_ml2c(v) \
-    caml_sdl2img_initflags_table[Long_val(v)];
+static inline IMG_InitFlags
+IMG_InitFlag_ml2c(v)
+{
+    if (v == caml_hash_variant("JPG"))  return IMG_INIT_JPG;
+    if (v == caml_hash_variant("PNG"))  return IMG_INIT_PNG;
+    if (v == caml_hash_variant("TIF"))  return IMG_INIT_TIF;
+    if (v == caml_hash_variant("WEBP")) return IMG_INIT_WEBP;
+    caml_failwith("Sdlimage.init_flags");
+}
 
 static inline IMG_InitFlags
 IMG_InitFlags_val(value flag_list)

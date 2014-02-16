@@ -8,8 +8,8 @@
 # Permission is granted to anyone to use this software for any purpose,
 # including commercial applications, and to alter it and redistribute it freely.
 
-OCAMLFIND := ocamlfind
-USEFIND := $(shell which $(OCAMLFIND) 2>/dev/null)
+OCAMLFIND = ocamlfind
+USEFIND = $(shell which $(OCAMLFIND) 2>/dev/null)
 
 ifdef USEFIND
 OCAMLC = $(OCAMLFIND) ocamlc
@@ -112,7 +112,8 @@ edit:
 clean:
 	$(RM) *.[oas] *.cm[ioxta] *.cmx[as] *.so *.dll *.byte *.opt *.exe
 
-# Installation
+
+# Findlib Installation
 
 .PHONY: install uninstall reinstall
 
@@ -139,6 +140,24 @@ reinstall:
 	$(MAKE) all
 	$(MAKE) uninstall
 	$(MAKE) install
+
+
+# Manual Installation
+
+INSTALL_DIR = install -d -m 0755
+INSTALL_EXE = install -m 0755
+INSTALL_FILE = install -D -m 0644
+
+.PHONY: manualinstall
+manualinstall:
+	$(INSTALL_DIR) $(OCSDLDESTDIR)
+	$(INSTALL_FILE) META \
+	  *.cm[aix] *.cmx[as] sdl2*.a libsdl2*_stubs.* \
+	  $(OCSDLDESTDIR)
+	$(INSTALL_EXE) \
+	  dllsdl2img_stubs.* \
+	  $(OCSDLSTUBDIR)
+
 
 # Dependencies
 

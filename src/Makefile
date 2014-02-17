@@ -15,10 +15,13 @@ ifdef USEFIND
 OCAMLC = $(OCAMLFIND) ocamlc
 OCAMLOPT = $(OCAMLFIND) ocamlopt
 OCSDLINC = -package sdl2
+OCSDLDIR = $(shell $(OCAMLFIND) query sdl2)
 else
 OCAMLC = ocamlc
 OCAMLOPT = ocamlopt
 OCSDLINC = -I +sdl2
+OCAMLDIR = $(shell $(OCAMLC) -where)
+OCSDLDIR = $(OCAMLDIR)/sdl2
 endif
 
 OCAMLMKLIB = ocamlmklib
@@ -26,10 +29,8 @@ OCAMLDOC = ocamldoc
 OCAMLDEP = ocamldep
 OCAML = ocaml
 CC = gcc
-OCAMLDIR = $(shell $(OCAMLC) -where)
 DIRSEP = $(shell $(OCAML) dir_sep.ml)
-OCSDLDIR = $(OCAMLDIR)/sdl2
-OCSDLINCDIR = $(OCSDLDIR)/include/
+OCSDLINCDIR = $(OCSDLDIR)/
 SDLINCDIR = /usr/include/SDL2
 DOC_DIR = doc
 MKDIR = mkdir -p

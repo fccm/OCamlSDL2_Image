@@ -48,8 +48,8 @@ caml_SDL_IMG_Init(value flags)
     IMG_InitFlags c_flags = IMG_InitFlags_val(flags);
     int si = IMG_Init(c_flags);
     if (si == 0) caml_failwith("Sdlimage.init");
-    if (si != c_flags) caml_failwith("Sdlimage.init: "
-        "uncomplete initialisation");
+    //if (si != c_flags) caml_failwith("Sdlimage.init: "
+    //    "uncomplete initialisation");
     return Val_unit;
 }
 

@@ -44,9 +44,7 @@ external is_xpm : Sdlrwops.t -> bool = "caml_SDL_IMG_isXPM"
 external is_xv : Sdlrwops.t -> bool = "caml_SDL_IMG_isXV"
 external is_webp : Sdlrwops.t -> bool = "caml_SDL_IMG_isWEBP"
 
-external load_png_rw : Sdlrwops.t -> Sdlsurface.t
-  = "caml_SDL_IMG_LoadPNG_RW"
-
+external load_png_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadPNG_RW"
 external load_ico_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadICO_RW"
 external load_cur_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadCUR_RW"
 external load_bmp_rw : Sdlrwops.t -> Sdlsurface.t = "caml_SDL_IMG_LoadBMP_RW"

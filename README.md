@@ -7,14 +7,6 @@ http://openclipart.org/image/250px/svg_to_png/1325/four-leaf-clover.png)
 
 OCamlSDL2_Image brings you access to the SDL2_image library from OCaml.
 
-## Current State
-
-These relays are currently in a very early draft state.
-You may expect to get segfaults.
-These pieces of code are currently called "relays"
-and not bindings while there is currently no memory
-management and no integration with the garbage collector.
-
 ## Relicensing
 
 If SDL_image changes its license in the future to any

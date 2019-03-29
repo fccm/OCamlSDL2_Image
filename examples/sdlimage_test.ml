@@ -20,10 +20,10 @@ let is_imgs = [
 let () =
   let filename = Sys.argv.(1) in
   SdlImg.init [
-    SdlImg.Init_JPG;
-    SdlImg.Init_PNG;
-    SdlImg.Init_TIF;
-    SdlImg.Init_WEBP;
+    `JPG;
+    `PNG;
+    `TIF;
+    `WEBP;
   ];
   let rwo = Sdlrwops.from_file ~filename ~mode:"rb" in
   let found = ref false in

@@ -67,6 +67,9 @@ edit:
 .PHONY: clean
 clean:
 	$(RM) \
+	  $(SAMPLE).cmi \
+	  $(SAMPLE).cmx \
+	  $(SAMPLE).o \
 	  $(SAMPLE).opt \
 	  $(SAMPLE).byte \
 	  #End

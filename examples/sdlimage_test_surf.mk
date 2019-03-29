@@ -1,6 +1,7 @@
+.PHONY: all
 all:
-	ocamlopt -g \
-	  -I +sdl2 sdl2.cmxa \
-	  -I . sdl2_img.cmxa \
-	  -o sdlimage_test_surf.opt \
-	  sdlimage_test_surf.ml
+	$(MAKE) -f sdlimage_sample.mk FILE=sdlimage_test_surf.ml
+
+.PHONY: clean
+clean:
+	$(MAKE) -f sdlimage_sample.mk FILE=sdlimage_test_surf.ml clean

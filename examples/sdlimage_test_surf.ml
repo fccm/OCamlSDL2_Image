@@ -4,7 +4,7 @@ module Image = Sdlimage
 let () =
   let width, height = (320, 240) in
   Sdl.init [`VIDEO];
-  Sdlimage.init [Image.Init_PNG];
+  Sdlimage.init [`PNG];
 
   let window =
     Window.create

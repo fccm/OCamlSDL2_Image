@@ -20,7 +20,7 @@
 #include "sdlsurface_stub.h"
 
 static inline IMG_InitFlags
-IMG_InitFlag_ml2c(v)
+IMG_InitFlag_ml2c(value v)
 {
     if (v == caml_hash_variant("JPG"))  return IMG_INIT_JPG;
     if (v == caml_hash_variant("PNG"))  return IMG_INIT_PNG;

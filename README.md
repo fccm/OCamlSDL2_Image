@@ -7,6 +7,11 @@ http://openclipart.org/image/250px/svg_to_png/1325/four-leaf-clover.png)
 
 OCamlSDL2_Image brings you access to the SDL2_image library from OCaml.
 
+## Documentation
+
+The API documentation of the SDL2_ttf library can be found at this address:  
+- https://www.libsdl.org/projects/SDL_image/
+
 ## Relicensing
 
 If SDL_image changes its license in the future to any

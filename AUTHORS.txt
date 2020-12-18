@@ -1,5 +1,8 @@
-Florent Monnier <monnier.florent on gmail>
+Florent Monnier <monnier.florent at gmail dot com>
   Main author and current maintainer
 
 Piotr Mardziel <@piotrm0>
   Added ocamlfind installation and instructions
+
+David Cadé <codename68 at gmail dot com>
+  Better Makefile compatibility
